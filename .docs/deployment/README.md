@@ -1,21 +1,20 @@
 # deployment/ -- Dokumentasi Deployment
 
-> Deployment pipeline, environments, infrastructure, dan运维 (operations).
+> Deployment pipeline, environments, infrastructure, dan operations untuk Contribution Hub.
 
 ---
 
 ## Tujuan
 
-Folder ini berisi dokumentasi deployment yang mencakup:
+Folder ini berisi dokumentasi deployment untuk Contribution Hub yang mencakup:
 
-- Deployment pipeline dan CI/CD configuration
+- Deployment pipeline Vercel + GitHub Actions
 - Environment management (development, staging, production)
-- Infrastructure as Code (jika digunakan)
-- Build dan release process
-- Monitoring dan alerting
-- Backup dan disaster recovery
+- Database migration strategy
+- Background job monitoring
+- Monitoring dan alerting (Sentry, Vercel Analytics)
 - Rollback procedures
-- Domain dan DNS configuration
+- Domain dan DNS configuration (contribution-hub.dev)
 
 ---
 

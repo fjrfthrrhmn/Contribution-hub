@@ -2,6 +2,10 @@
 
 > Roadmap ini adalah dokumen hidup yang merefleksikan arah pengembangan proyek.
 > Prioritas dapat berubah seiring kebutuhan. Semua timeline bersifat indikatif.
+>
+> **Product direction: Contribution Hub** -- Developer Activity Assistant
+> Platform personal untuk membantu developer menjaga konsistensi aktivitas GitHub secara meaningful.
+> Lihat dokumentasi produk di `.docs/product/` untuk detail lengkap.
 
 ## Fase 0: Foundation (Selesai)
 
@@ -13,15 +17,90 @@
 - [x] Setup next-intl untuk internasionalisasi
 - [x] Setup Vitest + Testing Library + Playwright
 - [x] Dokumentasi engineering (.docs/)
-- [x] AGENTS.md — AI collaboration guide
+- [x] AGENTS.md -- AI collaboration guide
 - [x] Lisensi (MIT), Changelog, Roadmap
 - [x] CI workflow (GitHub Actions)
 
+## Fase 1: MVP (Q3 2026)
+
+### Product Definition
+
+- [x] Product vision dan definition documents
+- [x] Target user personas
+- [ ] Product design system dan UI/UX guidelines
+- [ ] Feature specifications detail
+
+### Core Features
+
+- [ ] **GitHub Activity Tracker**
+  - Integrasi GitHub API untuk membaca aktivitas commit, PR, issue
+  - Personal activity log harian
+  - Kategorisasi aktivitas (coding, review, documentation, learning)
+
+- [ ] **Personal Dashboard**
+  - Overview aktivitas hari ini
+  - Weekly activity chart
+  - Streak tracker dengan meaningful milestones
+  - Recent activity feed
+
+- [ ] **Habit System**
+  - Daily goals (minimal commit, PR, atau aktivitas)
+  - Streak tracking dengan multiple streak types
+  - Weekly progress report
+  - Motivational insights
+
+- [ ] **Auto-Dokumentasi**
+  - Generate daily activity summary dari commit messages
+  - Weekly progress report yang bisa di-export
+  - Auto-generate changelog dari aktivitas
+
+### Technical Foundation
+
+- [ ] Better Auth integration (GitHub OAuth)
+- [ ] Database setup untuk menyimpan aktivitas
+- [ ] API endpoints untuk CRUD aktivitas
+- [ ] Background job untuk sync GitHub activity
+- [ ] Landing page dan onboarding flow
+
+## Fase 2: Growth (Q4 2026)
+
+### Feature Enhancements
+
+- [ ] Smart Issue/PR Suggestions
+- [ ] Advanced Analytics (productive hours, language breakdown)
+- [ ] Multiple Repository Management
+- [ ] GitLab / Bitbucket integration
+
+### Community
+
+- [ ] Public profile page (opsional -- shareable)
+- [ ] Developer badges dan milestone achievements
+- [ ] Weekly developer challenge (opsional)
+
+## Fase 3: Maturity (Q1 2027)
+
+- [ ] AI-Powered Insight (natural language summary, pattern recognition)
+- [ ] Team Plan (team dashboard, member tracking)
+- [ ] Developer Portfolio Generator
+- [ ] VS Code extension
+- [ ] Mobile app (React Native)
+
 ## Vision
 
-Menjadi platform referensi film modern dengan fokus pada:
+Menjadi platform developer activity assistant yang membantu setiap developer di Indonesia dan dunia untuk:
 
-- Pengalaman pengguna yang cepat dan responsif
-- Arsitektur yang maintainable dan scalable
+- Menjaga konsistensi coding dengan habit system yang meaningful
+- Mendokumentasikan progress pengembangan secara otomatis
+- Meningkatkan personal branding melalui GitHub profile yang aktif
+- Membangun kebiasaan engineering yang sehat dan sustainable
+
+Dengan fondasi:
+
+- Arsitektur yang maintainable dan scalable (FSD)
 - Kualitas kode yang teruji (type-safe, tested, documented)
 - Kolaborasi AI-first dengan dokumentasi yang lengkap
+- Fokus pada meaningful contribution, bukan spam atau aktivitas artifisial
+
+---
+
+> Detail roadmap dan product documentation tersedia di `.docs/product/roadmap.md`

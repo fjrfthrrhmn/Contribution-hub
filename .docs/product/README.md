@@ -22,6 +22,7 @@ Folder ini berisi dokumentasi yang berkaitan dengan aspek **produk** dari projec
 ```txt
 product/
 ├── README.md              # File ini -- panduan folder
+├── definition.md          # Definisi produk
 ├── vision.md              # Visi dan misi produk
 ├── roadmap.md             # Roadmap dan milestone
 ├── personas.md            # User personas

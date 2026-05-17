@@ -1,0 +1,48 @@
+{
+	"semi": false,
+	"singleQuote": false,
+	"useTabs": true,
+	"tabWidth": 2,
+	"printWidth": 80,
+	"trailingComma": "none",
+	"endOfLine": "auto",
+	"arrowParens": "always",
+	"quoteProps": "as-needed",
+	"bracketSpacing": true,
+	"htmlWhitespaceSensitivity": "ignore",
+
+	"importOrder": [
+		"^(react/(.*)$)|^(react$)|^(react-(.*)$)",
+		"^(next/(.*)$)|^(next$)|^(next-(.*)$)",
+		"^(@next)/(.*)$",
+		"",
+		"^(@radix-ui)/(.*)$",
+		"^(@tanstack)/(.*)$",
+		"^(zustand/(.*)$)|^(zustand$)",
+		"<THIRD_PARTY_MODULES>",
+		"",
+		"^@/types",
+		"^@/config",
+		"^@/constants",
+		"^@/data",
+		"",
+		"^@/hooks",
+		"^@/lib",
+		"^@/utils",
+		"",
+		"^@/components/ui",
+		"^@/components/widgets",
+		"^@/components/layouts",
+		"^@/components/providers",
+		"",
+		"^[./]"
+	],
+	"importOrderCaseSensitive": false,
+
+	"plugins": [
+		"@ianvs/prettier-plugin-sort-imports",
+		"prettier-plugin-tailwindcss"
+	],
+	"tailwindStylesheet": "./src/styles/globals.css",
+	"tailwindFunctions": ["clsx", "cva"]
+}

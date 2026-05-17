@@ -1,6 +1,10 @@
-// Layout components barrel
-// Export layout components saat sudah dibuat:
-// export { AppHeader } from "./app-header"
-// export { AppFooter } from "./app-footer"
-// export { Sidebar } from "./sidebar"
-// export { PageContainer } from "./page-container"
+export { AppShell } from "./app-shell"
+export { AppSidebar } from "./app-sidebar"
+export { NavMain } from "./nav-main"
+export type { NavItem } from "./nav-main"
+export { NavProjects } from "./nav-projects"
+export type { Project } from "./nav-projects"
+export { NavUser } from "./nav-user"
+export type { UserData } from "./nav-user"
+export { TeamSwitcher } from "./team-switcher"
+export type { Team } from "./team-switcher"

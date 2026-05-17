@@ -91,3 +91,12 @@ export {
 	AuthProvider,
 	useAuth
 } from "@/components/providers"
+export {
+	AppShell,
+	AppSidebar,
+	NavMain,
+	NavProjects,
+	NavUser,
+	TeamSwitcher
+} from "@/components/layouts"
+export type { NavItem, Project, UserData, Team } from "@/components/layouts"

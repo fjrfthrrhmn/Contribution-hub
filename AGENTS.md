@@ -1,12 +1,13 @@
-# AGENTS.md — General Engineering Handbook
+# AGENTS.md -- General Engineering Handbook
 
 ## Project Overview
 
-**Platform**: Next.js 14 (App Router) + Tailwind CSS v4 + TypeScript (Strict)
-**Arsitektur**: Feature-Sliced Design (FSD) — modular, scalable, future-proof
-**Target**: General-purpose web application foundation yang siap dikembangkan ke domain apapun
+**Nama Produk**: Contribution Hub -- Developer Activity Assistant
+**Platform**: Next.js 16 (App Router) + Tailwind CSS v4 + TypeScript (Strict)
+**Arsitektur**: Feature-Sliced Design (FSD) -- modular, scalable, future-proof
+**Target**: MVP web app yang memungkinkan developer melakukan commit ke GitHub repository mereka melalui tombol di website, dengan integrasi GitHub OAuth, trigger commit sederhana dari UI, serta pencatatan aktivitas commit ke repository user untuk menjaga konsistensi contribution graph GitHub.
 
-Repositori ini adalah **starter foundation project** — bukan template kosong, bukan production app, tapi sweet spot di tengah. Struktur sudah matang, boundary jelas, dokumentasi tersedia, dan siap untuk developer maupun AI coding agent.
+Repositori ini adalah **MVP Contribution Hub** -- aplikasi web yang membantu developer menjaga konsistensi aktivitas coding, mendokumentasikan progress, dan meningkatkan personal branding di GitHub. Bukan template kosong dan bukan production app, tetapi fondasi yang siap dikembangkan lebih lanjut.
 
 ---
 
@@ -14,7 +15,7 @@ Repositori ini adalah **starter foundation project** — bukan template kosong, 
 
 | Teknologi                    | Fungsi                        | Alasan                                     |
 | ---------------------------- | ----------------------------- | ------------------------------------------ |
-| **Next.js 14** (App Router)  | Routing, SSR, RSC, API Routes | Standard industri React framework          |
+| **Next.js 16** (App Router)  | Routing, SSR, RSC, API Routes | Standard industri React framework          |
 | **TypeScript** (Strict)      | Type safety                   | Zero tolerance untuk `any`                 |
 | **Tailwind CSS v4**          | Styling                       | Utility-first, performant                  |
 | **Shadcn UI / Radix**        | Component primitives          | Accessible, customizable, headless         |
@@ -25,6 +26,23 @@ Repositori ini adalah **starter foundation project** — bukan template kosong, 
 | **Vitest + Testing Library** | Unit/integration test         | Fast, modern, React-friendly               |
 | **Playwright**               | E2E test                      | Reliable browser automation                |
 | **Motion**                   | Animasi                       | Declarative, performant                    |
+| **Better Auth**              | Authentication                | GitHub OAuth, session management           |
+
+---
+
+## Product Documentation
+
+Dokumentasi produk lengkap tersedia di `.docs/product/`:
+
+| Dokumen         | Isi                                            |
+| --------------- | ---------------------------------------------- |
+| `vision.md`     | Visi, misi, core values, long-term goals       |
+| `definition.md` | Problem statement, target audience, value prop |
+| `roadmap.md`    | Fase pengembangan F0-F4 dengan milestones      |
+| `personas.md`   | User personas (Rama, Sari, Dimas, Maya)        |
+| `features/`     | Feature specs detail per fitur                 |
+
+**PENTING**: Sebelum memulai task baru, baca dokumentasi produk yang relevan di `.docs/product/` dan `.docs/architecture/`.
 
 ---
 
@@ -43,9 +61,9 @@ Setiap fitur adalah module mandiri di `src/features/`. Module punya dependency s
 ### 3. Separation of Concerns
 
 - **UI layer**: Hanya rendering, tidak ada business logic
-- **Logic layer**: Hooks, services, utils — tidak ada JSX
-- **State layer**: Zustand stores, React Query — tidak ada UI
-- **API layer**: fetch, axios — tidak ada business logic
+- **Logic layer**: Hooks, services, utils -- tidak ada JSX
+- **State layer**: Zustand stores, React Query -- tidak ada UI
+- **API layer**: fetch, axios -- tidak ada business logic
 
 ### 4. Barrel Export
 
@@ -108,7 +126,7 @@ Import graph harus tetap DAG (Directed Acyclic Graph). Tidak boleh ada:
 
 1. **Spesifik**: Sebutkan file path, function name, dan expected behavior
 2. **Contexual**: Berikan referensi pattern yang sudah ada
-3. **Boundary**: Jelaskan scope — apa yang BOLEH dan TIDAK BOLEH diubah
+3. **Boundary**: Jelaskan scope -- apa yang BOLEH dan TIDAK BOLEH diubah
 4. **Verification**: Sebutkan cara memverifikasi hasil (test command, typecheck, dll)
 
 ### Prompt Convention
@@ -156,7 +174,7 @@ Verify: [command untuk verifikasi]
 | `src/i18n/`                 | Internationalization | i18n config, routing, request             |
 | `.docs/`                    | Engineering Docs     | Architecture, decisions, guides           |
 
-### `.docs/` — Engineering Documentation Center
+### `.docs/` -- Engineering Documentation Center
 
 Pusat dokumentasi internal engineering dengan struktur sebagai berikut:
 
@@ -167,7 +185,7 @@ Pusat dokumentasi internal engineering dengan struktur sebagai berikut:
 | `technical/`    | Tech stack, dependencies, konfigurasi, development setup |
 | `engineering/`  | Engineering practices, code review, coding standards     |
 | `architecture/` | System architecture, data flow, module boundaries        |
-| `adr/`          | Architecture Decision Records — keputusan arsitektur     |
+| `adr/`          | Architecture Decision Records -- keputusan arsitektur    |
 | `api/`          | API documentation, endpoint specs, request/response      |
 | `testing/`      | Testing strategy, test types, coverage goals             |
 | `deployment/`   | Deployment pipeline, environments, infrastructure        |
@@ -176,7 +194,7 @@ Pusat dokumentasi internal engineering dengan struktur sebagai berikut:
 | `onboarding/`   | New developer onboarding, setup guide                    |
 | `glossary/`     | Project terminology, abbreviations, definitions          |
 
-Setiap sub-folder memiliki `README.md` dengan template dan panduan pengisian. Dokumentasi bersifat **living document** — update seiring perkembangan project.
+Setiap sub-folder memiliki `README.md` dengan template dan panduan pengisian. Dokumentasi bersifat **living document** -- update seiring perkembangan project.
 
 ## Features Structure
 
@@ -196,15 +214,27 @@ src/features/awesome-feature/
 └── utils/       # Feature-specific utilities
 ```
 
+### Feature Modules (Contribution Hub)
+
+```
+src/features/
+├── auth/              # GitHub OAuth, session management (Better Auth)
+├── activity/          # GitHub activity tracking, sync, categorization
+├── dashboard/         # Personal dashboard overview, stats, charts
+├── habits/            # Streak system, daily goals, milestones
+├── documentation/     # Auto-generated daily/weekly summaries
+└── profile/           # GitHub profile enhancer, badges
+```
+
 ---
 
 ## Documentation Rules
 
 1. **Semua dokumentasi WAJIB Bahasa Indonesia**
-2. **AGENTS.md** di setiap folder penting — menjelaskan fungsi folder, aturan, boundary
-3. **`.docs/`** untuk engineering documentation — architecture decision records, design docs, technical guides
-4. **README.md** untuk onboarding — cara setup, develop, build, deploy
-5. **CHANGELOG.md** untuk catatan perubahan — format Keep a Changelog
+2. **AGENTS.md** di setiap folder penting -- menjelaskan fungsi folder, aturan, boundary
+3. **`.docs/`** untuk engineering documentation -- architecture decision records, design docs, technical guides
+4. **README.md** untuk onboarding -- cara setup, develop, build, deploy
+5. **CHANGELOG.md** untuk catatan perubahan -- format Keep a Changelog
 6. Jangan gunakan emoji di dokumentasi teknis
 7. Tone: professional, clean, practical, engineering-focused
 
@@ -238,11 +268,11 @@ Semua harus lolos sebelum push.
 
 ### Branch Strategy
 
-- `main` — production-ready
-- `feat/*` — fitur baru
-- `fix/*` — bug fix
-- `refactor/*` — refactoring
-- `docs/*` — dokumentasi
+- `main` -- production-ready
+- `feat/*` -- fitur baru
+- `fix/*` -- bug fix
+- `refactor/*` -- refactoring
+- `docs/*` -- dokumentasi
 
 ---
 
@@ -281,10 +311,11 @@ Gunakan **Conventional Commits**:
 ### Contoh
 
 ```bash
-feat(auth): add login with email/password
-fix(ui): resolve button overflow on mobile
-refactor(hooks): extract use-debounce to shared hooks
-docs(api): update endpoint documentation
+feat(auth): add GitHub OAuth login
+feat(activity): implement commit trigger from dashboard
+fix(ui): resolve sidebar overflow on mobile
+refactor(activity): extract sync logic to service
+docs(product): update roadmap for Q3 2026
 ```
 
 ---
@@ -294,7 +325,7 @@ docs(api): update endpoint documentation
 ### Testing
 
 - **Unit test**: Setiap utility function, hook, dan komponen murni
-- **Integration test**: Alur utama aplikasi (login, CRUD, navigasi)
+- **Integration test**: Alur utama aplikasi (GitHub OAuth, commit trigger, activity sync)
 - **E2E test**: Critical path dengan Playwright
 - Coverage minimal: 70% (unit + integration)
 
@@ -339,9 +370,9 @@ docs(api): update endpoint documentation
 
 ### Cara Nambah Komponen UI
 
-1. Komponen atomik → `src/components/ui/`
-2. Komponen komposit → `src/components/widgets/`
-3. Komponen spesifik feature → `src/features/<feature>/components/`
+1. Komponen atomik -> `src/components/ui/`
+2. Komponen komposit -> `src/components/widgets/`
+3. Komponen spesifik feature -> `src/features/<feature>/components/`
 
 ### Cara Nambah API Route
 
@@ -365,7 +396,7 @@ docs(api): update endpoint documentation
 
 - Jangan ubah API interface yang sudah dipakai
 - Jangan ubah struktur folder tanpa approval
-- Jangan hapus file existing — deprecate dulu
+- Jangan hapus file existing -- deprecate dulu
 - Satu refactor = satu PR
 
 ### Dokumentasi Perubahan
@@ -385,7 +416,8 @@ docs(api): update endpoint documentation
 4. **API abstraction**: Semua external API lewat `src/lib/`, bukan langsung di komponen
 5. **Type safety**: Zod untuk runtime validation, TypeScript untuk compile-time safety
 6. **Monitoring**: Error boundary di setiap layer, logging terstruktur
+7. **Free-first**: Prioritaskan solusi tanpa biaya hosting, tanpa vendor lock-in, self-hostable
 
 ---
 
-_Handbook ini hidup — update jika ada keputusan arsitektur baru._
+_Handbook ini hidup -- update jika ada keputusan arsitektur baru._

@@ -27,8 +27,8 @@
 
 - [x] Product vision dan definition documents
 - [x] Target user personas
-- [ ] Product design system dan UI/UX guidelines
-- [ ] Feature specifications detail
+- [x] Product design system dan UI/UX guidelines
+- [x] Feature specifications detail
 
 ### Core Features
 
@@ -61,29 +61,6 @@
 - [ ] API endpoints untuk CRUD aktivitas
 - [ ] Background job untuk sync GitHub activity
 - [ ] Landing page dan onboarding flow
-
-## Fase 2: Growth (Q4 2026)
-
-### Feature Enhancements
-
-- [ ] Smart Issue/PR Suggestions
-- [ ] Advanced Analytics (productive hours, language breakdown)
-- [ ] Multiple Repository Management
-- [ ] GitLab / Bitbucket integration
-
-### Community
-
-- [ ] Public profile page (opsional -- shareable)
-- [ ] Developer badges dan milestone achievements
-- [ ] Weekly developer challenge (opsional)
-
-## Fase 3: Maturity (Q1 2027)
-
-- [ ] AI-Powered Insight (natural language summary, pattern recognition)
-- [ ] Team Plan (team dashboard, member tracking)
-- [ ] Developer Portfolio Generator
-- [ ] VS Code extension
-- [ ] Mobile app (React Native)
 
 ## Vision
 

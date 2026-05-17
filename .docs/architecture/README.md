@@ -8,6 +8,7 @@
 
 Folder ini berisi dokumentasi arsitektur yang mencakup:
 
+- Information architecture (sitemap, navigation, user flows, URL design)
 - High-level system architecture
 - Module boundaries dan dependency graph
 - Data flow diagrams
@@ -24,9 +25,11 @@ Folder ini berisi dokumentasi arsitektur yang mencakup:
 ```txt
 architecture/
 ├── README.md              # File ini -- panduan folder
-├── overview.md            # High-level architecture overview
-├── module-boundaries.md   # FSD module boundaries dan dependency rules
-├── data-flow.md           # Data flow diagrams dan penjelasan
+├── information-architecture.md # Sitemap, navigasi, user flows, URL design
+├── system-overview.md     # High-level architecture overview
+├── product-architecture.md # Domain model, feature mapping, data flow
+├── folder-structure.md    # FSD folder structure dan dependency rules
+│── data-flow.md           # Data flow diagrams dan penjelasan
 ├── state-management.md    # State management architecture
 ├── error-handling.md      # Error handling strategy
 ├── performance.md         # Performance architecture decisions

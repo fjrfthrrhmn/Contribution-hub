@@ -5,7 +5,6 @@ import { cn } from "@/utils/cn"
 import { Button } from "@/components/ui/button"
 import {
 	Field,
-	FieldDescription,
 	FieldGroup,
 	FieldLabel,
 	FieldSeparator
@@ -54,7 +53,7 @@ export function AuthForm({
 						{isLogin && (
 							<a
 								href="#"
-								className="ml-auto text-sm underline-offset-4 hover:underline"
+								className="ml-auto text-xs underline-offset-4 hover:underline"
 							>
 								Forgot your password?
 							</a>
@@ -82,23 +81,6 @@ export function AuthForm({
 						</svg>
 						{isLogin ? "Login with GitHub" : "Sign up with GitHub"}
 					</Button>
-					<FieldDescription className="text-center">
-						{isLogin ? (
-							<>
-								Don&apos;t have an account?{" "}
-								<a href="#" className="underline underline-offset-4">
-									Sign up
-								</a>
-							</>
-						) : (
-							<>
-								Already have an account?{" "}
-								<a href="#" className="underline underline-offset-4">
-									Login
-								</a>
-							</>
-						)}
-					</FieldDescription>
 				</Field>
 			</FieldGroup>
 		</form>

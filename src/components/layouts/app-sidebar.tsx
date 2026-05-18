@@ -3,16 +3,14 @@
 import * as React from "react"
 
 import {
-	AudioWaveform,
-	BookOpen,
-	Bot,
-	Command,
-	Frame,
+	FileText,
+	Flame,
 	GalleryVerticalEnd,
-	Map,
-	PieChart,
-	Settings2,
-	SquareTerminal
+	GitCommit,
+	LayoutDashboard,
+	Settings,
+	Target,
+	User
 } from "lucide-react"
 
 import {
@@ -23,87 +21,58 @@ import {
 	SidebarRail
 } from "@/components/ui/sidebar"
 import { NavMain } from "@/components/layouts/nav-main"
-import { NavProjects } from "@/components/layouts/nav-projects"
 import { NavUser } from "@/components/layouts/nav-user"
 import { TeamSwitcher } from "@/components/layouts/team-switcher"
 
-// Sample data — replace with real data from auth/session
 const data = {
 	user: {
-		name: "shadcn",
-		email: "m@example.com",
-		avatar: "/avatars/shadcn.jpg"
+		name: "Rama Developer",
+		email: "rama@example.com",
+		avatar: ""
 	},
 	teams: [
 		{
-			name: "Acme Inc",
+			name: "Contribution Hub",
 			logo: GalleryVerticalEnd,
-			plan: "Enterprise"
-		},
-		{
-			name: "Acme Corp.",
-			logo: AudioWaveform,
-			plan: "Startup"
-		},
-		{
-			name: "Evil Corp.",
-			logo: Command,
-			plan: "Free"
+			plan: "MVP"
 		}
 	],
 	navMain: [
 		{
 			title: "Dashboard",
 			url: "/dashboard",
-			icon: SquareTerminal,
+			icon: LayoutDashboard,
 			isActive: true
 		},
 		{
-			title: "Activity",
-			url: "/activity",
-			icon: Bot,
-			items: [
-				{ title: "Timeline", url: "/activity" },
-				{ title: "Stats", url: "/activity/stats" },
-				{ title: "Settings", url: "/activity/settings" }
-			]
+			title: "Aktivitas",
+			url: "/activities",
+			icon: GitCommit
 		},
 		{
-			title: "Documentation",
-			url: "#",
-			icon: BookOpen,
-			items: [
-				{ title: "Daily Reports", url: "#" },
-				{ title: "Weekly Reports", url: "#" },
-				{ title: "Changelog", url: "#" }
-			]
+			title: "Streaks",
+			url: "/streaks",
+			icon: Flame
+		},
+		{
+			title: "Goals",
+			url: "/goals",
+			icon: Target
+		},
+		{
+			title: "Reports",
+			url: "/reports",
+			icon: FileText
+		},
+		{
+			title: "Profile",
+			url: "/profile",
+			icon: User
 		},
 		{
 			title: "Settings",
-			url: "#",
-			icon: Settings2,
-			items: [
-				{ title: "General", url: "#" },
-				{ title: "Profile", url: "#" },
-				{ title: "Integrations", url: "#" }
-			]
-		}
-	],
-	projects: [
-		{
-			name: "contribution-hub",
-			url: "#",
-			icon: Frame
-		},
-		{
-			name: "Personal Website",
-			url: "#",
-			icon: PieChart
-		},
-		{
-			name: "Open Source",
-			url: "#",
-			icon: Map
+			url: "/settings",
+			icon: Settings
 		}
 	]
 }
@@ -116,7 +85,6 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
 			</SidebarHeader>
 			<SidebarContent>
 				<NavMain items={data.navMain} />
-				<NavProjects projects={data.projects} />
 			</SidebarContent>
 			<SidebarFooter>
 				<NavUser user={data.user} />

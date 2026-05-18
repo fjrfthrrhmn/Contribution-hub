@@ -32,7 +32,7 @@ export type NavItem = {
 export function NavMain({ items }: { items: NavItem[] }) {
 	return (
 		<SidebarGroup>
-			<SidebarGroupLabel>Navigation</SidebarGroupLabel>
+			<SidebarGroupLabel>Menu Utama</SidebarGroupLabel>
 			<SidebarMenu>
 				{items.map((item) => (
 					<Collapsible

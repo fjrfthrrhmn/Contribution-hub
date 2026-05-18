@@ -53,25 +53,50 @@ Developer tidak selalu di depan komputer. Dashboard harus bisa diakses dari smar
 
 Palet warna menggunakan CSS variables yang didefinisikan di `src/styles/globals.css`. Gunakan semantic tokens (`bg-background`, `text-foreground`, `border-border`) -- jangan hardcode warna.
 
-### Tokens Utama (dari globals.css)
+> **Single source of truth untuk warna:** `src/styles/globals.css` -- semua perubahan warna hanya di file ini.
 
-| Token                | Dark Mode              | Light Mode             | Usage                   |
-| -------------------- | ---------------------- | ---------------------- | ----------------------- |
-| `--background`       | oklch(0.141 0.005 ...) | oklch(1 0 0)           | Main background         |
-| `--foreground`       | oklch(0.985 0 0)       | oklch(0.141 0.005 ...) | Primary text            |
-| `--card`             | oklch(0.141 0.005 ...) | oklch(1 0 0)           | Card/section background |
-| `--muted-foreground` | oklch(0.705 0.015 ...) | oklch(0.552 0.016 ...) | Secondary text          |
-| `--border`           | oklch(0.274 0.006 ...) | oklch(0.92 0.004 ...)  | Borders, dividers       |
-| `--primary`          | oklch(0.985 0 0)       | oklch(0.21 0.006 ...)  | Primary accent, buttons |
-| `--destructive`      | oklch(0.577 0.245 ...) | oklch(0.577 0.245 ...) | Error, negative metric  |
+### Tokens Utama
 
-> **Jangan gunakan warna hardcode.** Semua warna diakses melalui semantic tokens. Palet warna hardcode yang tercantum di dokumen sebelumnya sudah obsolete -- gunakan globals.css sebagai single source of truth.
+| Token                | Dark Mode | Light Mode | Usage                   |
+| -------------------- | --------- | ---------- | ----------------------- |
+| `--background`       | `#0a0b0c` | `#fdfdfd`  | Main background         |
+| `--foreground`       | `#e1e3e6` | `#1a1c1e`  | Primary text            |
+| `--card`             | `#131416` | `#ffffff`  | Card/section background |
+| `--muted-foreground` | `#8a9098` | `#6e737a`  | Secondary text          |
+| `--border`           | `#2e3035` | `#d4d6da`  | Borders, dividers       |
+| `--primary`          | `#51f0a8` | `#51f0a8`  | Primary accent, buttons |
+| `--destructive`      | `#e74c3c` | `#e74c3c`  | Error, negative metric  |
+| `--ring`             | `#51f0a8` | `#51f0a8`  | Focus ring              |
+
+### Primary Color: Mint Green (#51f0a8)
+
+Warna hijau mint (`#51f0a8`) digunakan untuk elemen-elemen berikut:
+
+- Tombol aksi utama (primary button)
+- Focus ring pada input dan interactive elements
+- Highlight pada aktivitas coding/commit
+- Progress indicator (streak, goals)
+- Active state pada navigasi
+
+### Palet Lengkap
+
+Referensi ke `src/styles/globals.css` untuk palet chart (`--chart-1` hingga `--chart-5`) dan warna lainnya. Jangan menduplikasi nilai warna di dokumen ini.
+
+> **Jangan gunakan warna hardcode.** Semua warna diakses melalui semantic tokens.
 
 ## Typography
 
 **Single source of truth:** `src/components/ui/typography.tsx`
 
-Project ini menggunakan font **Geist** (dari next/font/google) yang dikonfigurasi di `src/config/fonts.ts`. BUKAN Inter. Geist otomatis di-inject melalui CSS variables `--font-sans` dan `--font-mono` di root layout.
+Project ini menggunakan tiga jenis font:
+
+| Variabel CSS   | Font              | Jenis                 |
+| -------------- | ----------------- | --------------------- |
+| `--font-sans`  | **DM Sans**       | Sans-serif (default)  |
+| `--font-serif` | **Lora**          | Serif (quote/heading) |
+| `--font-mono`  | **IBM Plex Mono** | Monospace (code)      |
+
+Font di-load melalui `next/font/google` di `src/config/fonts.ts` dan di-inject via CSS variables di root layout.
 
 ### Komponen Typography
 
@@ -86,6 +111,9 @@ const { Title, Text } = Typography
 <Title variant="1/bold">        // h1, 2.5rem, bold
 <Title variant="2/semibold">    // h2, 2.25rem, semibold
 <Title variant="3/medium">      // h3, 1.875rem, medium
+<Title variant="4/medium">
+<Title variant="5/medium">
+<Title variant="6/medium">
 
 // Body: variant = "{size}/{weight}"
 <Text variant="md/normal">      // 1.125rem, normal (default)
@@ -106,23 +134,55 @@ const { Title, Text } = Typography
 3. Jangan hardcode ukuran font yang sudah ada di komponen typography.
 4. Untuk komponen shadcn/ui (Button, Input, Card, dll), gunakan styling default mereka.
 
+## Spacing & Radius
+
+Project ini menggunakan base spacing unit `0.27rem` dan radius `1.5rem` untuk konsistensi visual:
+
+| Token       | Value     | Keterangan                             |
+| ----------- | --------- | -------------------------------------- |
+| `--spacing` | `0.27rem` | Base spacing unit untuk scale Tailwind |
+| `--radius`  | `1.5rem`  | Border radius default (rounded-xl)     |
+
+Radius `1.5rem` memberikan tampilan yang soft, pill-like pada card, button, dan container. Untuk variasi radius, gunakan semantic tokens:
+
+- `--radius-sm`: calc(1.5rem - 4px) -- elemen kecil (badge, tag)
+- `--radius-md`: calc(1.5rem - 2px) -- button, input
+- `--radius-lg`: 1.5rem -- card, dialog (default)
+- `--radius-xl`: calc(1.5rem + 4px) -- container besar, modal
+
+## Shadow System
+
+Shadow menggunakan HSL dengan opacity yang bervariasi antara light dan dark mode:
+
+| Token          | Light Opacity | Dark Opacity | Elevasi       |
+| -------------- | ------------- | ------------ | ------------- |
+| `--shadow-2xs` | 0.05          | 0.25         | Paling rendah |
+| `--shadow-xs`  | 0.06          | 0.26         | Sangat rendah |
+| `--shadow-sm`  | 0.07          | 0.27         | Rendah        |
+| `--shadow-md`  | 0.08          | 0.28         | Sedang        |
+| `--shadow-lg`  | 0.09          | 0.29         | Tinggi        |
+| `--shadow-xl`  | 0.10          | 0.30         | Sangat tinggi |
+| `--shadow-2xl` | 0.11          | 0.31         | Paling tinggi |
+
+Dark mode memiliki opacity shadow yang lebih tinggi untuk mempertahankan depth perception pada background gelap.
+
 ## Layout Structure
 
 ```
-┌─────────────────────────────────────────────┐
-│  Header (Logo + Navigation + User Avatar)    │
-├──────────────────┬──────────────────────────┤
-│  Sidebar         │  Main Content             │
-│  ─────────       │  ─────────────            │
-│  • Dashboard     │  [Page Content]           │
-│  • Activity      │                           │
-│  • Streaks       │                           │
-│  • Reports       │                           │
-│  • Profile       │                           │
-│  • Settings      │                           │
-├──────────────────┴──────────────────────────┤
-│  Footer (minimal)                            │
-└─────────────────────────────────────────────┘
++--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
+|  Header (Logo + Navigation + User Avatar)           |
++--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
+|  Sidebar         |  Main Content                     |
+|  --+--+--+--     |  --+--+--+--+--+--+--+--+--+--   |
+|  . Dashboard     |  [Page Content]                   |
+|  . Activity      |                                   |
+|  . Streaks       |                                   |
+|  . Reports       |                                   |
+|  . Profile       |                                   |
+|  . Settings      |                                   |
++--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
+|  Footer (minimal)                                    |
++--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
 ```
 
 ### Responsive Breakpoints
@@ -150,18 +210,17 @@ Activity timeline adalah komponen sentral. Desainnya harus:
 Streak display harus menjadi focal point dashboard:
 
 ```
-┌─────────────────────┐
-│  Current Streak      │
-│  🔥 14 days          │
-│                      │
-│  ┌─────────────────┐ │
-│  │ Progress Bar     │ │
-│  │ ████████░░░░ 60% │ │
-│  │ menuju 30 days   │ │
-│  └─────────────────┘ │
-│                      │
-│  Longest: 21 days    │
-└─────────────────────┘
++--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
+|  Current Streak                                      |
+|  [flame] 14 days                                     |
+|                                                      |
+|  +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+ |
+|  | Progress Bar     ████████░░░░ 60%                | |
+|  | menuju 30 days                                    | |
+|  +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+ |
+|                                                      |
+|  Longest: 21 days                                    |
++--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
 ```
 
 ### Stats Cards
@@ -206,32 +265,33 @@ Smooth transition dengan CSS `transition` pada CSS variables. Durasi 200ms ease.
 ## Dashboard Layout (Wireframe)
 
 ```
-┌──────────────────────────────────────────────────┐
-│  💻 Contribution Hub           👤 Profile  ⚙️   │
-├────────┬─────────────────────────────────────────┤
-│        │  Good morning, Rama!                     │
-│ 📊     │  ┌──────┐ ┌──────┐ ┌──────┐ ┌──────┐   │
-│ Dash   │  │🔥 14 │ │📝 156│ │👁 23 │ │⭐ 87%│   │
-│        │  │Streak│ │Commts│ │Review│ │Goals │   │
-│ 📋     │  └──────┘ └──────┘ └──────┘ └──────┘   │
-│ Activ  │                                          │
-│        │  ┌────────────────────────────────────┐  │
-│ 🔥     │  │ Weekly Activity Graph              │  │
-│ Streak │  │  ▓▓▓░▓▓▓▓▓░▓▓░▓▓▓▓░▓░░▓▓▓▓░▓▓   │  │
-│        │  │  M  T  W  T  F  S  S              │  │
-│ 📋     │  └────────────────────────────────────┘  │
-│ Report │                                          │
-│        │  ┌────────────────────────────────────┐  │
-│ 👤     │  │ Recent Activity                    │  │
-│ Profile│  │ ┌──────────────────────────────┐   │  │
-│        │  │ │🚀 Pushed to feature/auth     │   │  │
-│        │  │ │📅 2 hours ago  • 3 commits   │   │  │
-│        │  │ ├──────────────────────────────┤   │  │
-│ ⚙️     │  │ │🔀 Opened PR #42: Add login  │   │  │
-│ Sett   │  │ │📅 5 hours ago               │   │  │
-│        │  │ └──────────────────────────────┘   │  │
-│        │  └────────────────────────────────────┘  │
-└────────┴──────────────────────────────────────────┘
++--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
+|  Contribution Hub                         Profile  Settings        |
++--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
+|        |  Good morning, Rama!                                     |
+|        |  +------+ +------+ +------+ +------+                     |
+| Stats  |  | 14   | | 156  | |  23  | | 87%  |                     |
+|        |  |Streak| |Commts| |Review| |Goals |                     |
+|        |  +------+ +------+ +------+ +------+                     |
+| Activ  |                                                          |
+|        |  +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+  |
+| Streak |  | Weekly Activity Graph                                |  |
+|        |  |  [][][]...[][][][]...[][][]...[][][][]...[][][]...   |  |
+| Report |  |  M  T  W  T  F  S  S                                |  |
+|        |  +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+  |
+| Profile|                                                          |
+|        |  +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+  |
+| Sett   |  | Recent Activity                                      |  |
+|        |  | +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+  |  |
+|        |  | | Pushed to feature/auth                             |  |
+|        |  | | 2 hours ago  . 3 commits                           |  |
+|        |  | +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+  |  |
+|        |  | +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+  |  |
+|        |  | | Opened PR #42: Add login                          |  |
+|        |  | | 5 hours ago                                       |  |
+|        |  | +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+  |  |
+|        |  +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+  |
++--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
 ```
 
 ## Accessibility

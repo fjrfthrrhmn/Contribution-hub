@@ -7,17 +7,17 @@
 
 ## Typography System
 
-Typography system di project ini menggunakan **Geist** font (dari `next/font/google`) yang dikonfigurasi melalui CSS variables:
+Typography system di project ini menggunakan tiga font dari `next/font/google` yang dikonfigurasi melalui CSS variables:
 
-```
---font-sans  → Geist (sans-serif, font default)
---font-mono  → Geist Mono (monospace)
---font-serif → Geist (serif fallback)
-```
+| Variabel CSS   | Font              | Berat Tersedia      | Penggunaan                   |
+| -------------- | ----------------- | ------------------- | ---------------------------- |
+| `--font-sans`  | **DM Sans**       | Variable (100-1000) | Body text, heading, UI umum  |
+| `--font-serif` | **Lora**          | Variable (400-700)  | Quotes, heading aksen        |
+| `--font-mono`  | **IBM Plex Mono** | 400, 500, 600, 700  | Code, terminal, angka teknis |
 
 **JANGAN gunakan font manual atau hardcode font-family** -- font sudah dikonfigurasi di `src/config/fonts.ts` dan di-inject di root layout.
 
-### Komponen Typography (WAJIB digunakan)
+### Komponen Typography
 
 Seluruh typography menggunakan komponen terpusat di `src/components/ui/typography.tsx`. Jangan gunakan elemen HTML mentah (`<h1>`, `<p>`) tanpa komponen ini.
 
@@ -30,12 +30,12 @@ import Typography from "@/components/ui/typography"
 
 const { Title, Text } = Typography
 
-<Title variant="1/bold">   // → <h1> text-4xl md:text-5xl font-bold
-<Title variant="2/semibold"> // → <h2> text-3xl md:text-4xl font-semibold
-<Title variant="3/medium">   // → <h3> text-2xl md:text-3xl font-medium
-<Title variant="4/normal">   // → <h4> text-xl md:text-2xl font-normal
-<Title variant="5/light">    // → <h5> text-lg md:text-xl
-<Title variant="6/bold">     // → <h6> text-base md:text-lg font-bold
+<Title variant="1/bold">       // <h1> text-4xl md:text-5xl font-bold
+<Title variant="2/semibold">   // <h2> text-3xl md:text-4xl font-semibold
+<Title variant="3/medium">     // <h3> text-2xl md:text-3xl font-medium
+<Title variant="4/normal">     // <h4> text-xl md:text-2xl font-normal
+<Title variant="5/light">      // <h5> text-lg md:text-xl
+<Title variant="6/bold">       // <h6> text-base md:text-lg font-bold
 ```
 
 **Level** yang tersedia: `1 | 2 | 3 | 4 | 5 | 6` (memetakan ke `<h1>` hingga `<h6>`)
@@ -46,11 +46,11 @@ const { Title, Text } = Typography
 Untuk body text, gunakan komponen `Text` dengan prop `variant` berformat `{size}/{weight}`:
 
 ```tsx
-<Text variant="xl/normal">    // → text-2xl font-normal
-<Text variant="lg/medium">    // → text-xl font-medium
-<Text variant="md/semibold">  // → text-lg font-semibol (DEFAULT)
-<Text variant="sm/bold">      // → text-base font-bold
-<Text variant="xs/normal">    // → text-sm font-normal
+<Text variant="xl/normal">     // text-2xl font-normal
+<Text variant="lg/medium">     // text-xl font-medium
+<Text variant="md/semibold">   // text-lg font-semibold (DEFAULT)
+<Text variant="sm/bold">       // text-base font-bold
+<Text variant="xs/normal">     // text-sm font-normal
 ```
 
 **Size** yang tersedia: `xl | lg | md | sm | xs`
@@ -59,9 +59,9 @@ Untuk body text, gunakan komponen `Text` dengan prop `variant` berformat `{size}
 Text component juga menerima prop `as` untuk mengubah elemen HTML:
 
 ```tsx
-<Text as="code" variant="sm/medium"> // → <code> dengan styling text
-<Text as="span" variant="xs/normal"> // → <span> dengan styling text
-<Text as="kbd">                       // → <kbd> untuk keyboard shortcut
+<Text as="code" variant="sm/medium">  // <code> dengan styling text
+<Text as="span" variant="xs/normal">  // <span> dengan styling text
+<Text as="kbd">                        // <kbd> untuk keyboard shortcut
 ```
 
 ### Aturan Penggunaan
@@ -85,6 +85,62 @@ Text component juga menerima prop `as` untuk mengubah elemen HTML:
 ### Pengecualian
 
 Untuk komponen shadcn/ui yang sudah memiliki styling sendiri (Button, Input, Card, dll), gunakan styling default komponen tersebut. Jangan paksakan `<Text>` component di dalamnya.
+
+---
+
+## Design Tokens
+
+### Warna
+
+Semua warna didefinisikan di `src/styles/globals.css` sebagai CSS variables dan di-binding ke Tailwind `@theme inline` directive. Gunakan semantic tokens -- jangan hardcode hex values.
+
+```tsx
+// ✅ Gunakan semantic tokens
+<div className="bg-background text-foreground">
+<div className="border border-border rounded-xl">
+
+// ❌ Jangan hardcode warna
+<div className="bg-white text-black">
+```
+
+### Radius
+
+Default radius `1.5rem` memberikan tampilan pill-like pada UI. Variasi:
+
+| Token          | Value              | Penggunaan              |
+| -------------- | ------------------ | ----------------------- |
+| `rounded-sm`   | calc(1.5rem - 4px) | Badge, tag kecil        |
+| `rounded-md`   | calc(1.5rem - 2px) | Button, input           |
+| `rounded-lg`   | 1.5rem             | Card, dialog, container |
+| `rounded-xl`   | calc(1.5rem + 4px) | Modal besar, page       |
+| `rounded-full` | 9999px             | Avatar, pill            |
+
+### Shadow
+
+Shadow menggunakan HSL dengan opacity yang berbeda antara light dan dark mode. Gunakan semantic shadow utilities:
+
+```tsx
+// ✅ Gunakan shadow utilities
+<div className="shadow-sm">        <!-- card subtle -->
+<div className="shadow-md">        <!-- dropdown, popover -->
+<div className="shadow-lg">        <!-- modal, dialog -->
+
+// ❌ Jangan hardcode shadow values
+<div style="box-shadow: 0 2px 5px rgba(0,0,0,0.07)">
+```
+
+### Spacing
+
+Base spacing unit: `0.27rem`. Spacing scale mengikuti multiplikasi dari base unit ini. Tailwind spacing utilities (`p-1`, `gap-2`, `m-4`, dll) sudah menggunakan scale ini.
+
+| Tailwind    | Value              | Penggunaan      |
+| ----------- | ------------------ | --------------- |
+| `gap-2`     | ~8px (2 x 0.27rem) | Dense elements  |
+| `gap-4`     | ~16px              | Default spacing |
+| `gap-6`     | ~24px              | Section spacing |
+| `p-6`       | ~24px              | Card padding    |
+| `p-8`       | ~32px              | Page padding    |
+| `max-w-7xl` | 1280px             | Page max width  |
 
 ---
 
@@ -144,7 +200,7 @@ function MyForm() {
 
 ### Design Tokens (via CSS Variables)
 
-Design tokens didefinisikan di `src/styles/globals.css` menggunakan CSS variables dengan prefix `--color-*`, `--radius-*`. Semua token di-binding ke Tailwind `@theme inline` directive:
+Design tokens didefinisikan di `src/styles/globals.css` menggunakan CSS variables dengan prefix `--color-*`, `--radius-*`, `--shadow-*`. Semua token di-binding ke Tailwind `@theme inline` directive:
 
 ```css
 /* src/styles/globals.css -- jangan duplikasi di file lain */
@@ -152,6 +208,7 @@ Design tokens didefinisikan di `src/styles/globals.css` menggunakan CSS variable
 	--color-background: var(--background);
 	--color-primary: var(--primary);
 	--radius-lg: var(--radius);
+	--shadow-md: var(--shadow-md);
 }
 ```
 
@@ -159,11 +216,8 @@ Gunakan token ini di komponen:
 
 ```tsx
 // ✅ Gunakan semantic tokens
-<div className="bg-background text-foreground">
-<div className="border border-border rounded-lg">
-
-// ❌ Jangan hardcode warna
-<div className="bg-white text-black">
+<div className="bg-background text-foreground rounded-xl shadow-sm">
+<div className="border border-border">
 ```
 
 ### Utility Classes
@@ -207,27 +261,14 @@ Gunakan token ini di komponen:
 ## Component Hierarchy
 
 ```
-UI Kit (shadcn/ui)          → Button, Input, Badge, Card
-    ↓
-Layouts                     → AppShell (sidebar), PageContainer
-    ↓
-Widgets                     → StatsCard, ActivityTimeline, StreakBadge
-    ↓
-Feature Components          → LoginForm, ActivityList, DashboardGrid
+UI Kit (shadcn/ui)          -> Button, Input, Badge, Card
+    |
+Layouts                     -> AppShell (sidebar), PageContainer
+    |
+Widgets                     -> StatsCard, ActivityTimeline, StreakBadge
+    |
+Feature Components          -> LoginForm, ActivityList, DashboardGrid
 ```
-
----
-
-## Spacing & Layout
-
-| Token       | Value  | Usage           |
-| ----------- | ------ | --------------- |
-| `gap-2`     | 8px    | Dense elements  |
-| `gap-4`     | 16px   | Default spacing |
-| `gap-6`     | 24px   | Section spacing |
-| `p-6`       | 24px   | Card padding    |
-| `p-8`       | 32px   | Page padding    |
-| `max-w-7xl` | 1280px | Page max width  |
 
 ---
 

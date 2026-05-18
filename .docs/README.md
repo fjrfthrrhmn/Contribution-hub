@@ -20,19 +20,19 @@ Folder `.docs` adalah pusat dokumentasi engineering yang berfungsi sebagai:
 
 | Folder          | Fungsi                                                   |
 | --------------- | -------------------------------------------------------- |
-| `product/`      | Visi produk, roadmap, user stories, feature specs        |
-| `design/`       | Design system, UI/UX guidelines, component patterns      |
-| `technical/`    | Tech stack, dependencies, konfigurasi, development setup |
-| `engineering/`  | Engineering practices, code review, coding standards     |
-| `architecture/` | System architecture, data flow, module boundaries        |
 | `adr/`          | Architecture Decision Records -- keputusan arsitektur    |
-| `api/`          | API documentation, endpoint specs, request/response      |
-| `testing/`      | Testing strategy, test types, coverage goals             |
-| `deployment/`   | Deployment pipeline, environments, infrastructure        |
-| `security/`     | Security policies, auth, authorization, data protection  |
 | `ai/`           | AI agent collaboration guide, prompt conventions         |
-| `onboarding/`   | New developer onboarding, setup guide                    |
+| `api/`          | API documentation, endpoint specs, request/response      |
+| `architecture/` | System architecture, data flow, module boundaries        |
+| `deployment/`   | Deployment pipeline, environments, infrastructure        |
+| `design/`       | Design system, UI/UX guidelines, component patterns      |
+| `engineering/`  | Engineering practices, code review, coding standards     |
 | `glossary/`     | Project terminology, abbreviations, definitions          |
+| `onboarding/`   | New developer onboarding, setup guide                    |
+| `product/`      | Visi produk, roadmap, user stories, feature specs        |
+| `security/`     | Security policies, auth, authorization, data protection  |
+| `testing/`      | Testing strategy, test types, coverage goals             |
+| `technical/`    | Tech stack, dependencies, konfigurasi, development setup |
 
 ---
 

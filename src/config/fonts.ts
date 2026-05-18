@@ -1,18 +1,19 @@
-import { Geist, Geist_Mono } from "next/font/google"
+import { DM_Sans, IBM_Plex_Mono, Lora } from "next/font/google"
 
-const geistSans = Geist({
+const dmSans = DM_Sans({
 	variable: "--font-sans",
 	subsets: ["latin"]
 })
 
-const geistSerif = Geist({
+const lora = Lora({
 	variable: "--font-serif",
 	subsets: ["latin"]
 })
 
-const geistMono = Geist_Mono({
+const ibmPlexMono = IBM_Plex_Mono({
 	variable: "--font-mono",
-	subsets: ["latin"]
+	subsets: ["latin"],
+	weight: ["400", "500", "600", "700"]
 })
 
-export const fontVariables = `${geistSans.variable} ${geistMono.variable} ${geistSerif.variable}`
+export const fontVariables = `${dmSans.variable} ${lora.variable} ${ibmPlexMono.variable}`

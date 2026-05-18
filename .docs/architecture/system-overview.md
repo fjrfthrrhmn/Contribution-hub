@@ -45,16 +45,12 @@ Provider nesting order (dari root layout):
 ```tsx
 // src/app/providers.tsx
 <QueryProvider>
-	{" "}
 	// 1. Server state (React Query)
 	<ThemeProvider>
-		{" "}
 		// 2. Theme (next-themes)
 		<I18nProvider>
-			{" "}
 			// 3. i18n (next-intl)
 			<AuthProvider>
-				{" "}
 				// 4. Auth (kustom)
 				{children}
 			</AuthProvider>

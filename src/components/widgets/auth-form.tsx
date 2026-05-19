@@ -1,88 +1,56 @@
 "use client"
 
-import { cn } from "@/utils/cn"
+import { GalleryVerticalEnd } from "lucide-react"
 
-import { Button } from "@/components/ui/button"
+import { authClient } from "@/lib/auth-client"
+
 import {
-	Field,
-	FieldGroup,
-	FieldLabel,
-	FieldSeparator
-} from "@/components/ui/field"
-import { Input } from "@/components/ui/input"
+	Button,
+	Card,
+	CardContent,
+	CardDescription,
+	CardHeader,
+	CardTitle
+} from "@/components/ui"
 
-export type AuthFormMode = "login" | "register"
-
-export type AuthFormProps = React.ComponentProps<"form"> & {
-	mode?: AuthFormMode
-}
-
-export function AuthForm({
-	className,
-	mode = "login",
-	...props
-}: AuthFormProps) {
-	const isLogin = mode === "login"
-
+export function AuthForm() {
 	return (
-		<form className={cn("flex flex-col gap-6", className)} {...props}>
-			<FieldGroup>
-				<div className="flex flex-col items-center gap-1 text-center">
-					<h1 className="text-2xl font-bold">
-						{isLogin ? "Login to your account" : "Create an account"}
-					</h1>
-					<p className="text-sm text-balance text-muted-foreground">
-						{isLogin
-							? "Enter your email below to login to your account"
-							: "Enter your details below to create your account"}
-					</p>
+		<Card className="w-full max-w-sm">
+			<CardHeader className="items-center text-center">
+				<div className="mb-2 flex size-10 items-center justify-center rounded-md bg-primary text-primary-foreground">
+					<GalleryVerticalEnd className="size-5" />
 				</div>
-				{!isLogin && (
-					<Field>
-						<FieldLabel htmlFor="name">Full Name</FieldLabel>
-						<Input id="name" type="text" placeholder="John Doe" required />
-					</Field>
-				)}
-				<Field>
-					<FieldLabel htmlFor="email">Email</FieldLabel>
-					<Input id="email" type="email" placeholder="m@example.com" required />
-				</Field>
-				<Field>
-					<div className="flex items-center">
-						<FieldLabel htmlFor="password">Password</FieldLabel>
-						{isLogin && (
-							<a
-								href="#"
-								className="ml-auto text-xs underline-offset-4 hover:underline"
-							>
-								Forgot your password?
-							</a>
-						)}
-					</div>
-					<Input id="password" type="password" required />
-				</Field>
-				{!isLogin && (
-					<Field>
-						<FieldLabel htmlFor="confirm-password">Confirm Password</FieldLabel>
-						<Input id="confirm-password" type="password" required />
-					</Field>
-				)}
-				<Field>
-					<Button type="submit">{isLogin ? "Login" : "Sign Up"}</Button>
-				</Field>
-				<FieldSeparator>Or continue with</FieldSeparator>
-				<Field>
-					<Button variant="outline" type="button">
-						<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+				<CardTitle className="text-xl">Masuk ke Contribution Hub</CardTitle>
+				<CardDescription>
+					Hubungkan akun GitHub untuk mulai melacak aktivitas coding.
+				</CardDescription>
+			</CardHeader>
+			<CardContent>
+				<div className="grid gap-4">
+					<Button
+						variant="outline"
+						className="w-full"
+						onClick={async () => {
+							await authClient.signIn.social({
+								provider: "github"
+							})
+						}}
+					>
+						<svg
+							className="mr-2 size-4"
+							viewBox="0 0 24 24"
+							fill="none"
+							xmlns="http://www.w3.org/2000/svg"
+						>
 							<path
-								d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"
+								d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.008-.866-.013-1.7-2.782.603-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.831.092-.646.35-1.086.636-1.336-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0112 6.836c.85.004 1.705.114 2.504.336 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.202 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.577.688.48C19.138 20.161 22 16.418 22 12c0-5.523-4.477-10-10-10z"
 								fill="currentColor"
 							/>
 						</svg>
-						{isLogin ? "Login with GitHub" : "Sign up with GitHub"}
+						Lanjutkan dengan GitHub
 					</Button>
-				</Field>
-			</FieldGroup>
-		</form>
+				</div>
+			</CardContent>
+		</Card>
 	)
 }

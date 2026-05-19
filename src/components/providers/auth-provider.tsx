@@ -1,18 +1,14 @@
 "use client"
 
-import { createContext, useContext, useState, type ReactNode } from "react"
+import { createContext, useContext, type ReactNode } from "react"
 
-type User = {
-	id: string
-	name: string
-	email: string
-} | null
+import { authClient } from "@/lib/auth-client"
+
+type Session = typeof authClient.$Infer.Session
 
 type AuthContextType = {
-	user: User
-	isLoading: boolean
-	login: (email: string, password: string) => Promise<void>
-	logout: () => void
+	session: Session | null
+	isPending: boolean
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined)
@@ -21,29 +17,11 @@ type AuthProviderProps = {
 	children: ReactNode
 }
 
-/**
- * AuthProvider placeholder untuk integrasi Better Auth.
- *
- * TODO: Implementasi penuh setelah Better Auth dikonfigurasi:
- * - src/lib/auth.ts (server)
- * - src/lib/auth-client.ts (client)
- * - src/features/auth/api/
- */
 export function AuthProvider({ children }: AuthProviderProps) {
-	const [user, setUser] = useState<User>(null)
-	const [isLoading] = useState(false)
-
-	const login = async (_email: string, _password: string) => {
-		// Placeholder: implementasi dengan Better Auth
-		console.warn("AuthProvider: login belum diimplementasikan")
-	}
-
-	const logout = () => {
-		setUser(null)
-	}
+	const { data: session, isPending } = authClient.useSession()
 
 	return (
-		<AuthContext.Provider value={{ user, isLoading, login, logout }}>
+		<AuthContext.Provider value={{ session, isPending }}>
 			{children}
 		</AuthContext.Provider>
 	)

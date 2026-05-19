@@ -12,8 +12,8 @@ Komponen komposit yang menggabungkan beberapa UI primitives menjadi satu unit fu
 
 ## Convention
 
-- Nama: `user-card.tsx`, `data-table.tsx`, `confirm-modal.tsx`
-- Props type: `UserCardProps`, `DataTableProps`
+- Nama: `UserCard.tsx`, `DataTable.tsx`, `ConfirmModal.tsx`
+- Props type: `UserCardProps`, `DataTableProps`, `ConfirmModalProps`, `AnimatedThemeTogglerProps`
 - File type terpisah jika types kompleks: `data-table.types.ts`
 
 ## Dependency Boundaries

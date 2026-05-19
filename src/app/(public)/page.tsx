@@ -16,6 +16,7 @@ import {
 	CardTitle
 } from "@/components/ui"
 import Typography from "@/components/ui/typography"
+import { AnimatedThemeToggler } from "@/components/widgets"
 
 const { Title, Text } = Typography
 
@@ -50,9 +51,13 @@ export default function HomePage() {
 					</div>
 					Contribution Hub
 				</Link>
-				<Button variant="outline" size="sm" asChild>
-					<Link href="/login">Masuk</Link>
-				</Button>
+				<div className="flex items-center gap-4">
+					<AnimatedThemeToggler />
+					<div className="h-6 w-px border border-border" />
+					<Button variant="outline" size="sm" asChild>
+						<Link href="/login">Masuk</Link>
+					</Button>
+				</div>
 			</header>
 
 			<section className="flex flex-1 flex-col items-center justify-center px-6 py-24 text-center md:px-10">

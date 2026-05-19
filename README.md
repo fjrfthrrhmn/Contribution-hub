@@ -144,7 +144,7 @@ Seluruh dokumentasi engineering tersedia di `.docs/`:
 
 Contribution Hub bertujuan menjadi **platform developer activity assistant** yang membantu setiap developer di dunia membangun kebiasaan coding yang konsisten, meaningful, dan terdokumentasi dengan baik.
 
-Baca selengkapnya di [Product Vision](.docs/product/vision.md) dan [Product Roadmap](.docs/product/roadmap.md).
+Baca selengkapnya di [Product Vision](.docs/product/vision.md) dan [Execution Roadmap](../ROADMAP.md).
 
 ## Lisensi
 

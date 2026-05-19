@@ -38,9 +38,10 @@ Dokumentasi produk lengkap tersedia di `.docs/product/`:
 | --------------- | ---------------------------------------------- |
 | `vision.md`     | Visi, misi, core values, long-term goals       |
 | `definition.md` | Problem statement, target audience, value prop |
-| `roadmap.md`    | Fase pengembangan F0-F4 dengan milestones      |
 | `personas.md`   | User personas (Rama, Sari, Dimas, Maya)        |
 | `features/`     | Feature specs detail per fitur                 |
+
+> **ROADMAP.md** di root proyek adalah kanonikal execution roadmap. Lihat `.docs/architecture/engineering-roadmap.md` untuk detail arsitektur dan fase engineering.
 
 **PENTING**: Sebelum memulai task baru, baca dokumentasi produk yang relevan di `.docs/product/` dan `.docs/architecture/`.
 

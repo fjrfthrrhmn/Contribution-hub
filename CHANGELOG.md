@@ -5,6 +5,33 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.2.0] - 2026-05-19
+
+### feat
+
+- Better Auth integration: server config (GitHub OAuth, PostgreSQL adapter), client SDK, API route handler
+- AuthProvider dengan session context dan useAuth hook
+- GitHub OAuth sign-in via AuthForm component (`src/components/widgets/auth-form.tsx`)
+- Middleware route protection (proxy.ts) untuk dashboard dan protected pages
+- Route groups: `(public)` untuk landing page dan login, `(app)` untuk halaman terautentikasi
+- Template pages untuk semua domain fitur (dashboard, activities, goals, profile, reports, settings)
+- Environment variable validation dengan @t3-oss/env-nextjs + Zod (`src/config/env.ts`)
+- AnimatedThemeToggler widget dengan animasi toggle theme
+
+### refactor
+
+- Route structure: semua feature pages dipindahkan ke `(app)` route group
+- AuthForm restruktur: dari form login/password menjadi GitHub-only sign-in button
+- Landing page dipindahkan ke `(public)` route group
+- .env.example diperbarui dengan semua required variables (database, auth, github oauth)
+
+### docs
+
+- AGENTS.md untuk route groups: `(app)` dan `(public)`
+- ROADMAP.md: refactor ke feature-based execution roadmap, tambah Scaffolding domain
+- Engineering roadmap: pindah dari `.docs/product/roadmap.md` ke `.docs/architecture/engineering-roadmap.md`
+- Update cross-references di 11 file dokumentasi
+
 ## [0.1.0] - 2026-05-18
 
 ### feat

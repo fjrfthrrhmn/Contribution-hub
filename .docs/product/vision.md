@@ -76,5 +76,6 @@ Tidak semua hari coding menghasilkan kode sempurna. Terkadang refactor, baca dok
 ## Related Documents
 
 - [Product Definition](./definition.md)
-- [Product Roadmap](./roadmap.md)
+- [Execution Roadmap](../../ROADMAP.md) — Prioritas fitur dan task
+- [Engineering Roadmap](../architecture/engineering-roadmap.md) — Detail arsitektur dan fase engineering
 - [User Personas](./personas.md)

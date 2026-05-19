@@ -10,10 +10,11 @@ Folder ini berisi dokumentasi yang berkaitan dengan aspek **produk** dari projec
 
 - Visi dan misi produk
 - Target pengguna dan use cases
-- Roadmap dan prioritas fitur
 - User stories dan acceptance criteria
 - Feature specifications
 - Product requirements document (PRD)
+
+> **Catatan:** Roadmap eksekusi kini berada di `ROADMAP.md` root proyek. Engineering roadmap detail ada di `.docs/architecture/engineering-roadmap.md`.
 
 ---
 
@@ -24,7 +25,6 @@ product/
 ├── README.md              # File ini -- panduan folder
 ├── definition.md          # Definisi produk
 ├── vision.md              # Visi dan misi produk
-├── roadmap.md             # Roadmap dan milestone
 ├── personas.md            # User personas
 ├── features/              # Dokumentasi per fitur
 │   ├── fitur-satu.md

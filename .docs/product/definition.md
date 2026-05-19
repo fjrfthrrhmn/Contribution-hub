@@ -134,6 +134,6 @@ Fokus utama adalah membangun kebiasaan jangka panjang, bukan mencari jalan pinta
 ## Related Documents
 
 - [Product Vision](./vision.md)
-- [Product Roadmap](./roadmap.md)
+- [Execution Roadmap](../../ROADMAP.md)
 - [User Personas](./personas.md)
 - [Architecture Overview](../architecture/product-architecture.md)
